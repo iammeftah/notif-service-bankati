@@ -20,15 +20,15 @@ WORKDIR /app
 COPY --from=builder /app/target/*.jar app.jar
 
 # Expose the port your application runs on
-EXPOSE 8095
+EXPOSE 8093
 
 # Set environment variables that Render expects
 ENV SPRING_PROFILES_ACTIVE=prod
-ENV PORT=8095
+ENV SERVER_PORT=8093
 
 # Create a non-root user
 RUN useradd -m myuser
 USER myuser
 
 # Command to run the application
-CMD ["java", "-jar", "-Dserver.port=$PORT", "app.jar"]
+CMD ["java", "-jar", "app.jar"]
